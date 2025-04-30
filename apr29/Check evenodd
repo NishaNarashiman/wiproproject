@@ -1,0 +1,22 @@
+using System;
+
+public class EvenOdd 
+{
+    static void CheckEvenOdd(int num) 
+    {
+        if (num % 2 == 0) 
+        {
+            Console.WriteLine(num + " is even");
+        } 
+        else 
+        {
+            Console.WriteLine(num + " is odd");
+        }
+    }
+
+    static void Main() 
+    {
+        int num = 25;
+        CheckEvenOdd(num);
+    }
+}

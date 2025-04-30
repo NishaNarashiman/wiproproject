@@ -1,0 +1,24 @@
+using System;
+
+public class largestnumber
+{
+    public static void Main() 
+    {
+        int num1=7;
+        int num2=34;
+        int num3=12;
+        if (num1>num2 && num1>num3)
+        {
+            Console.WriteLine("num1: "+ num1 + " isgreater");
+        }
+        else if (num2>num1 && num2>num3)
+        {
+            Console.WriteLine("num2: "+ num2 + " isgreater");
+        }
+        else
+        {
+            Console.WriteLine("num3: "+ num3 + " isgreater");
+        }
+    
+    }    
+}

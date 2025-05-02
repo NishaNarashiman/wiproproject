@@ -1,0 +1,14 @@
+using System;
+
+class Program 
+{
+    static void GreetUser(string name)
+    {
+        Console.WriteLine("hello,"+name);
+    }
+    static void Main()
+    {
+       GreetUser("amina"); 
+    }
+   
+}

@@ -1,0 +1,19 @@
+using System;
+
+public class HelloWorld 
+{
+    //public static void Main(string[] args) 
+    static int Square(int number)
+    {
+        return number*number;
+    }
+    static void Main()
+    {
+        int result=Square(5);
+        Console.WriteLine("square is : "+ result);
+    }
+    
+
+        
+    
+}

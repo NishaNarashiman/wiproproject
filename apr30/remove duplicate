@@ -1,0 +1,14 @@
+using System;
+using System.Linq;
+
+class Program 
+{
+    static void Main() 
+    {
+        int[] numbers = { 1, 2, 3, 2, 4, 1 };
+
+        var uniqueNumbers = numbers.Distinct().ToArray();
+
+        Console.WriteLine(string.Join(", ", uniqueNumbers));
+    }
+}

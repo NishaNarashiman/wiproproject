@@ -1,0 +1,24 @@
+using System;
+
+class Program 
+{
+    static void LinearSearch(int[] arr, int target) 
+    {
+        for (int i = 0; i < arr.Length; i++) 
+        {
+            if (arr[i] == target) 
+            {
+                Console.WriteLine(i);
+                return;
+            }
+        }
+        Console.WriteLine("Not found");
+    }
+
+    static void Main() 
+    {
+        int[] numbers = { 3, 5, 7, 8, 2, 9, 10 };
+        int target = 6;
+        LinearSearch(numbers, target);
+    }
+}

@@ -1,0 +1,17 @@
+using System;
+using System.Linq;
+
+class Program 
+{
+    static void Main() 
+    {
+        int[] numbers = { 1, 2, 1, 3, 2, 1 };
+
+        var groups = numbers.GroupBy(n => n);
+
+        foreach (var group in groups) 
+        {
+            Console.WriteLine($"{group.Key} occurs {group.Count()} time{(group.Count() > 1 ? "s" : "")}");
+        }
+    }
+}

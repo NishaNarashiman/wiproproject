@@ -1,0 +1,17 @@
+using System;
+
+public class HelloWorld 
+{
+    public static void Main(string[] args) 
+    {
+        
+        int num = 1;
+        while (num * num <= 100) 
+        {
+            Console.WriteLine("Number: " + num + ", Square: " + (num * num));
+            num++;
+        }
+
+        
+    }
+}

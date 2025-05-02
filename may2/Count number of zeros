@@ -1,0 +1,21 @@
+using System;
+class Program
+{
+    static void Main()
+    {
+        long number = 2004350510;
+        Console.WriteLine($"Number of zeros in {number} is {CountZeros(number)}");
+    }
+
+    static int CountZeros(long number)
+    {
+        int count = 0;
+        while (number > 0)
+        {
+            if (number % 10 == 0)
+                count++;
+            number /= 10;
+        }
+        return count;
+    }
+}

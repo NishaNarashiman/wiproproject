@@ -1,0 +1,17 @@
+using System;
+
+public class HelloWorld 
+{
+    public static void Main(string[] args) 
+    {
+        int num = 12345;
+        int sum = 0;
+        while (num > 0) 
+            {
+                sum += num % 10;
+                num /= 10;
+            }
+        Console.WriteLine("Sum: " + sum);
+        
+    }
+}

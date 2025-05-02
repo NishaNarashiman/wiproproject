@@ -1,0 +1,14 @@
+using System;
+
+class Program 
+{
+    static void PrintMessage()
+    {
+        Console.WriteLine("Welcom to ChatGpt AI");
+    }
+    static void Main()
+    {
+       PrintMessage();
+    }
+   
+}

@@ -1,0 +1,32 @@
+using System;
+
+class Program 
+{
+    static void SquareArray(int[] arr) 
+    {
+        for (int i = 0; i < arr.Length; i++) 
+        {
+            arr[i] = arr[i] * arr[i];
+        }
+    }
+
+    static void PrintArray(int[] arr) 
+    {
+        for (int i = 0; i < arr.Length; i++) 
+        {
+            Console.WriteLine($"Element{i + 1}: {arr[i]}");
+        }
+    }
+
+    static void Main() 
+    {
+        int[] numbers = { 10, 20, 30, 40, 50 };
+        Console.WriteLine("Original Array:");
+        PrintArray(numbers);
+        
+        SquareArray(numbers);
+        
+        Console.WriteLine("Array with Squares:");
+        PrintArray(numbers);
+    }
+}

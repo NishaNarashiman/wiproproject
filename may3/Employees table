@@ -1,0 +1,22 @@
+CREATE TABLE Employees(
+EmployeeID INT PRIMARY KEY,
+FirstName VARCHAR(50),
+LastName VARCHAR(50),
+Department VARCHAR(50),
+Salary Decimal(10,2),
+HireDate Date);
+
+INSERT INTO Employees (EmployeeID, FirstName, LastName, Department, Salary, HireDate)
+ VALUES
+(1, 'John', 'Smith', 'Sales', 50000.00, '2020-01-01'),
+(2, 'Jane', 'Doe', 'Marketing', 60000.00,'2019-06-01'),
+(3, 'Emily', 'Johnson', 'IT', 70000.00, '2018-03-01'),
+(4, 'Mike', 'Davis', 'HR', 55000.00,'2020-09-01'),
+(5, 'Alice', 'William', 'Sales', 650000.00, '2017-01-01');
+
+UPDATE Employees
+SET Department='Sales'
+WHERE EmployeeID=2;
+
+DELETE FROM Employees
+WHERE Salary<60000.00;

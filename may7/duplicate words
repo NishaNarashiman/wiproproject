@@ -1,0 +1,23 @@
+using System;
+using System.Linq;
+class Program
+{
+    public static void PrintDuplicateWords(string sentence)
+    {
+        var words = sentence.ToLower().Split(' ');
+        var duplicates = words.Where(w => words.Count(x => x == w) > 1).Distinct();
+        foreach (var word in duplicates) 
+        {
+            Console.WriteLine(word);
+        }
+        
+    }
+    public static void Main()
+    {
+        PrintDuplicateWords("Hello world hello this is new hello");
+    }
+
+        
+
+    
+}

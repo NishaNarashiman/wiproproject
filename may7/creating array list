@@ -1,0 +1,31 @@
+using System;
+using System.Collections;
+class Program
+{
+    public static void Main()
+    {
+        ArrayList Studentnames = new ArrayList();
+
+        Studentnames.Add("Reena");
+        Studentnames.Add("Tina");
+        Studentnames.Add("Rahul");
+        Studentnames.Add("Noah");
+        Studentnames.Add("Radhi");
+
+    if (Studentnames.Contains("Reena"))
+    {
+        Console.WriteLine("found 'Reena' in Studentnames");
+    }
+    else
+    {
+        Console.WriteLine("Not found.");
+    }
+    Studentnames.Remove("Rahul");
+
+    Console.WriteLine("final list of Students names: ");
+    foreach(var name in Studentnames)
+    {
+        Console.WriteLine(name);
+    }
+    }
+}   

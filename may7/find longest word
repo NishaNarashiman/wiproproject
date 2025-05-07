@@ -1,0 +1,19 @@
+using System;
+class Program
+{
+    public static string FindLongestWord(string sentence)
+    {
+        string[] words = sentence.Split(' ');
+        string longest = "";
+        foreach(string word in words)
+        {
+            if (word.Length > longest.Length)
+                longest = word;
+        }
+        return longest;
+    }
+    public static void Main()
+    {
+        Console.WriteLine(FindLongestWord("I love Programming in C#"));
+    }
+}

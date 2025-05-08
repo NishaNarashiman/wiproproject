@@ -1,0 +1,41 @@
+using System;
+using System.Collections.Generic;
+class Program
+{
+    public static void Main()
+    {
+        List<string> fruits = new List<string>() { "apple", "banana", "manago" };
+
+        //adding ana element
+        fruits.Add("cherry");
+
+        //add at specific position
+        fruits.Insert(1, "orange");
+
+        //remove element
+        fruits.Remove("banana");
+
+        //remove at index value
+        fruits.RemoveAt(2);
+
+        //Checking
+        if (fruits.Contains("apple"))
+            Console.WriteLine("found apple");
+
+        //sorting
+        fruits.Sort();
+
+        Console.WriteLine("fruits in list.");
+
+        //printing final list
+        foreach(string fruit in fruits)
+        {
+            Console.WriteLine(fruit);
+        }
+
+
+
+
+
+    }
+}

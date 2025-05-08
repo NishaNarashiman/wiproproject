@@ -1,0 +1,39 @@
+using System;
+using System.Collections.Generic;
+
+class PhoneDirectory
+{
+    static void Main()
+    {
+        
+        Dictionary<string, string> phoneBook = new Dictionary<string, string>();
+
+        
+        phoneBook["Alice"] = "9876543210";
+        phoneBook["Bob"] = "9123456780";
+        phoneBook["Charlie"] = "9988776655";
+        phoneBook["Diana"] = "9001122334";
+        phoneBook["Eve"] = "8899776655";
+
+        
+        phoneBook["Bob"] = "9111222333"; 
+
+        
+        string searchName = "Charlie";
+        if (phoneBook.ContainsKey("Charlie"))
+        {
+            Console.WriteLine("Charlie is in the phone book.");
+        }
+        else
+        {
+            Console.WriteLine(" Charlie is not in the phone book.");
+        }
+
+        
+        Console.WriteLine("\nAll contacts in the phone directory:");
+        foreach (var contact in phoneBook)
+        {
+            Console.WriteLine($"Name: {contact.Key}, Phone: {contact.Value}");
+        }
+    }
+}

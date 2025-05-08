@@ -1,0 +1,25 @@
+using System;
+using System.Collections.Generic;
+
+class UniqueElements
+{
+    static void Main()
+    {
+        
+        List<int> numbers = new List<int> { 10, 20, 30, 10, 40, 50, 20, 60, 70, 30 };
+
+        
+        HashSet<int> uniqueNumbers = new HashSet<int>(numbers);
+
+       
+        Console.WriteLine("Unique numbers:");
+        foreach (int num in uniqueNumbers)
+        {
+            Console.Write(num + " ");
+        }
+        Console.WriteLine();
+
+        
+        Console.WriteLine("Total unique elements: " + uniqueNumbers.Count);
+    }
+}

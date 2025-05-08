@@ -1,0 +1,21 @@
+using System;
+using System.Collections.Generic;
+class Program
+{
+    public static void Main()
+    {
+        List<int> numbers = new List<int>();
+        numbers.Add(5);
+        numbers.Add(9);
+        numbers.Add(4);
+        foreach(int num in numbers)
+        {
+            Console.WriteLine(num);
+        }
+
+
+
+
+
+    }
+}

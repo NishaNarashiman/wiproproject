@@ -1,0 +1,46 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Employee
+{
+    public int ID { get; set; }
+    public string Name { get; set; }
+}
+
+class Program
+{
+    static void Main()
+    {
+        List<Employee> employees = new List<Employee>();
+
+        
+        employees.Add(new Employee { ID = 1, Name = "alice" });
+        employees.Add(new Employee { ID = 2, Name = "bob" });
+        employees.Add(new Employee { ID = 3, Name = "john" });
+        employees.Add(new Employee { ID = 4, Name = "charlie" });
+        employees.Add(new Employee { ID = 5, Name = "noah" });
+
+       
+        employees.RemoveAll(e => e.Name == "bob");
+
+        
+        if (employees.Any(e => e.Name == "alice"))
+        {
+            Console.WriteLine("Contains");
+        }
+        else
+        {
+            Console.WriteLine("Not contains");
+        }
+
+        
+        foreach (Employee employee in employees)
+        {
+            Console.WriteLine("ID: " + employee.ID + ", Name: " + employee.Name);
+        }
+
+        
+        Console.WriteLine("Total employees: " + employees.Count);
+    }
+}

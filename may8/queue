@@ -1,0 +1,26 @@
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        Queue<string> queue = new Queue<string>();
+        
+            queue.Enqueue("amit");
+            queue.Enqueue("neha");
+            queue.Enqueue("priya");
+            queue.Enqueue("ravi");
+
+
+            Console.WriteLine("Queue Elementss:");
+
+        foreach (var name in queue) 
+        {
+            Console.WriteLine(name);
+        }
+            Console.WriteLine("\nDequeued:" + queue.Dequeue());
+            Console.WriteLine("next in line:" + queue.Peek());
+    }
+
+}

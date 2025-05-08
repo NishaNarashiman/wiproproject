@@ -1,0 +1,28 @@
+using System;
+using System.Collections.Generic;
+class Program
+{
+    static void Main()
+    {
+        List<string> employeeNames = new List<string>();
+        employeeNames.Add("alice");
+        employeeNames.Add("bob");
+        employeeNames.Add("john");
+        employeeNames.Add("charlie");
+        employeeNames.Add("Noah");
+
+        employeeNames.Remove("charlie");
+
+        if (employeeNames.Contains("alice"))
+        {
+            Console.WriteLine("alice exists in list");
+        }
+        else
+        {
+            Console.WriteLine(" alice does not exists in list");
+        }
+            
+        Console.WriteLine($"Total number of employees: {employeeNames.Count}");
+
+    }
+}

@@ -1,0 +1,23 @@
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        Dictionary<int, string> students = new Dictionary<int, string>();
+
+        students.Add(101, "alice");
+        students.Add(102, "bob");
+        students.Add(103, "charlie");
+
+        Console.WriteLine("Student with ID 101:" + students[102]);
+
+        foreach (var pair in students)
+        {
+            Console.WriteLine($"ID: {pair.Key},Name:{pair.Value}");
+        }
+
+    }
+
+}

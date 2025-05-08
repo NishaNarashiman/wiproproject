@@ -1,0 +1,23 @@
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        Dictionary<int, string> employees = new Dictionary<int, string>
+        {
+             {1,"rohit"},
+             {2,"anjali"},
+             {3,"sandeep"}
+        };
+        employees[2] = "ananya";
+
+        Console.WriteLine("updating name for Employee List:");
+
+        foreach (var emp in employees)
+        {
+            Console.WriteLine($"ID: {emp.Key},Name:{emp.Value}");
+        }
+
+    }

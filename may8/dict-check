@@ -1,0 +1,30 @@
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        Dictionary<string, string> cities = new Dictionary<string, string>
+        { 
+             {"mumbai","maharashtra"},
+             {"bangalore","karnataka"},
+             {"chennai","tamil nadu"},
+             {"kolkata","west bengal"},
+             {"hyderabad","telangana"},
+        };
+        
+
+        Console.WriteLine("Indian cities and their States:");
+
+        foreach (var city in cities)
+        {
+            Console.WriteLine($"{city.Key},is in:{city.Value}");
+        }
+        if(cities.ContainsKey("chennai"))
+        {
+            Console.WriteLine("Chennai is present in the dictionary.");
+        }
+    }
+
+}

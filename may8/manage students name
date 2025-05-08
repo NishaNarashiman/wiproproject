@@ -1,0 +1,36 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        
+        ArrayList students = new ArrayList();
+
+        
+        students.Add("Alice");
+        students.Add("Ravi");
+        students.Add("Bob");
+        students.Add("John");
+        students.Add("neha");
+
+        
+        students.Remove("Bob");
+
+      
+        Console.WriteLine("Student List:");
+        foreach (var name in students)
+        {
+            Console.WriteLine(name);
+        }
+
+        
+
+        if (students.Contains("Ravi"))
+            Console.WriteLine("Ravi is in the list.");
+        else
+            Console.WriteLine("Ravi is not in the list.");
+    }
+}

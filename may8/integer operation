@@ -1,0 +1,47 @@
+using System;
+using System.Collections.Generic;
+
+class IntegerOperations
+{
+    static void Main()
+    {
+        
+        List<int> numbers = new List<int>();
+
+        
+        Random rand = new Random();
+        for (int i = 0; i < 10; i++)
+        {
+            numbers.Add(rand.Next(1, 51)); 
+        }
+
+        
+        numbers.Sort();
+
+        Console.WriteLine("Sorted numbers: ");
+        foreach (var num in numbers)
+        {
+            Console.Write(num + " ");
+        }
+
+
+        int min = numbers[0];
+        int max = numbers[numbers.Count - 1];
+
+        
+        
+
+        Console.WriteLine("Minimum value: " + min);
+        Console.WriteLine("Maximum value: " + max);
+
+        
+        double sum = 0;
+        foreach (int num in numbers)
+        {
+            sum += num;
+        }
+        double average = sum / numbers.Count;
+
+        Console.WriteLine("Average value: " + average);
+    }
+}

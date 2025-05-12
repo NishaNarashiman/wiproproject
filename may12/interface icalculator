@@ -1,0 +1,47 @@
+using System;
+
+interface ICalculator
+{
+    int Add(int a, int b);
+    int Subtract(int a, int b);
+    int Multiply(int a, int b);
+    int Divide(int a, int b);
+}
+
+class SimpleCalculator : ICalculator
+{
+    public int Add(int a, int b)
+    {
+        return a + b;
+    }
+
+    public int Subtract(int a, int b)
+    {
+        return a - b;
+    }
+
+    public int Multiply(int a, int b)
+    {
+        return a * b;
+    }
+
+    public int Divide(int a, int b)
+    {
+        return a / b;
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        
+        SimpleCalculator calc = new SimpleCalculator();
+
+        
+        Console.WriteLine("Addition: " + calc.Add(12, 8));
+        Console.WriteLine("Subtraction: " + calc.Subtract(12, 8));
+        Console.WriteLine("Multiplication: " + calc.Multiply(12, 8));
+        Console.WriteLine("Division: " + calc.Divide(10, 5));
+    }
+}

@@ -1,0 +1,28 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Xml.Linq;
+namespace Linq_Practice
+{
+    class Program
+    {
+        static void Main(string[] arge)
+        {
+            string[] names = {"Anil","Sharma","Abdulla",
+                "Imran","Siva","Naresh",
+                "Suresh","Suman"};
+            UsingLinqExtensions(names);
+        }
+        public static void UsingLinqExtensions(string[] names)
+        {
+            IEnumerable<string> query = names
+                .Where(s => s.Length == 5)
+                .OrderBy(s => s)
+                .Select(s => s.ToUpper());
+
+            foreach (string item in query)
+                Console.WriteLine(item);
+            Console.Read();
+        }
+    }
+}

@@ -1,0 +1,23 @@
+
+using System;
+using System.Net.Http.Headers;
+
+interface IShape
+{
+    void Draw();
+}
+class Circle:IShape
+{
+    public void Draw()
+    {
+        Console.WriteLine("drawing a cirlce");
+    }
+}
+class Program
+{
+    static void Main(string[] args)
+    {
+        Circle circle = new Circle();
+        circle.Draw();
+    }
+}

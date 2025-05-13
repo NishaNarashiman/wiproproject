@@ -1,0 +1,47 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Xml.Linq;
+namespace Linq_Practice
+{
+    using System;
+    //defing custom delegate
+    delegate void CustomDel(string s);
+    class TestClass
+    {
+        //defing two methods that as same signature as customdel
+        static void Hello(string s)
+        {
+            Console.WriteLine($"hello, {s}!");
+        }
+        static void GoodBye(string s)
+        {
+            Console.WriteLine($"Goodbye, {s}!");
+        }
+        static void Main()
+        {
+            //declare instances of custom delegate
+            CustomDel hiDel, ByeDel, multiDel, multiMinusHiDel;
+            hiDel = Hello;
+
+            //creating delegate object ByeDel that references the method GoodBye
+            ByeDel = GoodBye;
+
+            //these two delegates are combined to form multiDel
+            //multicasting delegate
+            multiDel = hiDel + ByeDel;
+
+
+            multiMinusHiDel = multiDel - hiDel;
+
+            Console.WriteLine("Invoking delegate hiDel:");
+            hiDel("A");
+            Console.WriteLine("Invoking delegate ByeDel:");
+            ByeDel("B");
+            Console.WriteLine("Invoking delegate multiDel:");
+            multiDel("C");
+            Console.WriteLine("Invoking delegate multiMinusHiDel:");
+            multiMinusHiDel("D");
+        }
+    }
+} 

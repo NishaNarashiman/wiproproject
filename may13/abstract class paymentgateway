@@ -1,0 +1,41 @@
+using System;
+abstract class PaymentGateway
+{
+    public abstract void ProcessPayment(double amount);
+    public void ShowGatewayName()
+    {
+        Console.WriteLine("Processing payment through gateway");
+    }
+
+
+}
+class StipeGateway : PaymentGateway
+{
+    public override void ProcessPayment(double amount)
+    {
+        Console.WriteLine($"Processing payment through Stripe: {amount}");
+    }
+}
+class PayPalGateway : PaymentGateway
+{
+    public override void  ProcessPayment(double amount)
+    {
+        Console.WriteLine($"Processing payment through PayPal:  {amount}");
+    }
+}
+class Program
+{
+    static void Main()
+    {
+        PaymentGateway stripegateway = new StipeGateway();
+        PaymentGateway paypalgateway = new PayPalGateway();
+
+        stripegateway.ShowGatewayName();
+        stripegateway.ProcessPayment(234.00);
+
+        paypalgateway.ShowGatewayName();
+        paypalgateway.ProcessPayment(123.00);
+    }
+
+
+}

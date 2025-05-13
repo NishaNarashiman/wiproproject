@@ -1,0 +1,34 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Xml.Linq;
+namespace Linq_Practice
+{
+    public class Employee
+    {
+        public int EmployeeID { get; set; }
+        public string EmployeeName { get; set; }
+        public int Age { get; set; }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Employee[] employeeArray = {
+                new Employee() { EmployeeID  =1, EmployeeName = "John",Age=18},
+                new Employee() { EmployeeID = 2, EmployeeName = "steve",Age = 21},
+                new Employee() { EmployeeID = 3, EmployeeName = "bill",Age = 25},
+                new Employee() { EmployeeID = 4, EmployeeName = "ram",Age = 20},
+                new Employee() { EmployeeID = 5, EmployeeName = "ron",Age = 31},
+                new Employee() { EmployeeID = 6, EmployeeName = "chris", Age = 17 },
+                new Employee() { EmployeeID = 7, EmployeeName = "rob", Age = 19 },
+            };
+            Employee[] teenAgerEmployees = employeeArray.Where(s => s.Age > 12 && s.Age < 20).ToArray();
+
+            Employee bill = employeeArray.Where(s => s.EmployeeName == "bill").FirstOrDefault();
+
+            Employee Employee5=employeeArray.Where(s=>s.EmployeeID==5).FirstOrDefault();
+        }
+
+    }    }
+    

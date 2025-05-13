@@ -1,0 +1,34 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Xml.Linq;
+namespace Linq_Practice
+{
+    using System;
+   
+ 
+    class SimpleDelegate
+    {
+
+        class Action
+        {
+            public static void Main()
+            {
+                Action<int> printActionDel = ConsolePrint;
+                Action<int> printToPrinter = PrinterPrint;
+
+                printActionDel(10);
+                printToPrinter(450);
+                Console.Read();
+            }
+            public static void ConsolePrint(int i)
+            {
+                Console.WriteLine(i);
+            }
+            public static void PrinterPrint(int i)
+            {
+                Console.WriteLine("this is beign printed to the printer");
+            }
+        }
+    }
+} 

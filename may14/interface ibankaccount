@@ -1,0 +1,65 @@
+using System;
+interface IBankAccount
+{
+    void Deposit(double amount);
+    void Withdraw(double amount);
+    void CheckBalance();
+
+
+}
+class SavingsAccount : IBankAccount
+{
+    private double balance = 0;
+    public void Deposit(double amount)
+    {
+        balance += amount;
+        Console.WriteLine($" deposited : {amount}");
+    }
+    public void Withdraw(double amount)
+    {
+        balance -=amount;
+        Console.WriteLine($" withdrew: {amount}");
+    }
+    public void CheckBalance()
+    {
+        Console.WriteLine($" savings balance: {balance}");
+    }
+   
+}
+class CurrentAccount : IBankAccount
+{
+    private double balance = 0;
+    public void Deposit(double amount)
+    {
+        balance += amount;
+        Console.WriteLine($"deposited: {amount}");
+    }
+    public void Withdraw(double amount)
+    {
+        balance -= amount;
+        Console.WriteLine($"withdrew : {amount}");
+    }
+    public void CheckBalance()
+    {
+        Console.WriteLine($" current balance :  {balance}");
+    }
+}
+class Program
+{
+    static void Main()
+    {
+        IBankAccount savings = new SavingsAccount();
+        IBankAccount current= new CurrentAccount();
+
+
+        savings.Deposit(5000);
+        savings.Withdraw(2000);
+        savings.CheckBalance();
+
+        current.Deposit(7000);
+        current.Withdraw(3000);
+        current.CheckBalance();
+
+    }
+
+}

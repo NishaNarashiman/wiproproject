@@ -1,0 +1,19 @@
+sing Microsoft.AspNetCore.Mvc;
+
+namespace WebApplication2.Controllers
+{
+    public class EmployeeController : Controller
+    {
+        public string Index()
+        {
+            return "this is Employee Index";
+        }
+        public string FirstName()
+        {
+            return "My first name is Nisha";
+        }
+        public string LastName()
+        {
+            return "My last name is Christiana";
+        }
+    }

@@ -1,0 +1,20 @@
+using Microsoft.AspNetCore.Mvc;
+
+namespace WebApplication2.Controllers
+{
+    public class StudentController : Controller
+    {
+        public string Index()
+        {
+            return "this is a student index";
+        }
+        public string GetStudentName()
+        {
+            return "Name of the student is John";
+        }
+        public string GetStudentPhone()
+        {
+            return "Phone number of the student is 2367937416";
+        }
+    }
+}

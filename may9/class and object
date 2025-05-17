@@ -1,0 +1,37 @@
+using System;
+class Student
+{
+    public int RollNumber;
+    public string Name;
+    public int Marks;
+
+    //method to print
+    public void PrintDetails()
+    {
+        Console.WriteLine($"Roll Num: {RollNumber}");
+        Console.WriteLine($"Name: {Name}");
+        Console.WriteLine($"Marks: {Marks}");
+    }
+    class Program
+    {
+        static void Main()
+        {   //creating 0bject of student
+            Student student1 = new Student();
+
+            //take the object and call the methods
+            student1.RollNumber = 101;
+            student1.Name = "Nisha";
+            student1.Marks = 90;
+
+            //we can also have 1 more object
+            Student student2 = new Student();
+
+            student2.RollNumber = 102;
+            student2.Name = "John";
+            student2.Marks = 91;
+
+            student1.PrintDetails();
+            student2.PrintDetails();
+        }
+    }
+}

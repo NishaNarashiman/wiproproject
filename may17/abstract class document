@@ -1,0 +1,41 @@
+using System;
+abstract class Document
+{
+    public abstract void PrintContent();
+    public void ShowDocumentType(string type)
+    {
+        Console.WriteLine($"Document Type: {type}");
+    }
+
+
+}
+class WordDocument : Document
+{
+    public override void PrintContent()
+    {
+        Console.WriteLine("Printing the Word Document");
+    }
+}
+class PDFDocument : Document
+{
+    public override void PrintContent()
+    {
+        Console.WriteLine("Printing PDF Document");
+    }
+}
+class Program
+{
+    static void Main()
+    {
+        Document word = new WordDocument();
+        Document pdf = new PDFDocument();
+
+        word.ShowDocumentType("word");
+        word.PrintContent();
+
+        pdf.ShowDocumentType("pdf");
+        pdf.PrintContent();
+    }
+
+
+}

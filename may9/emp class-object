@@ -1,0 +1,51 @@
+using System;
+
+class Employee
+{
+    // Fields
+    public int EmployeeID;
+    public string Name;
+    public string Department;
+    public double Salary;
+
+    // Method to print employee details
+    public void PrintDetails()
+    {
+        Console.WriteLine("Employee ID: " + EmployeeID);
+        Console.WriteLine("Name: " + Name);
+        Console.WriteLine("Department: " + Department);
+        Console.WriteLine("Salary: " + Salary);
+    }
+
+    // Method to update salary
+    public void UpdateSalary(double newSalary)
+    {
+        Salary = newSalary;
+    }
+
+    // Method to calculate annual salary
+    public double AnnualSalary()
+    {
+        return Salary * 12;
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        // Object creation
+        Employee emp1 = new Employee();
+
+        // Initializing fields
+        emp1.EmployeeID = 101;
+        emp1.Name = "John Doe";
+        emp1.Department = "HR";
+        emp1.Salary = 50000;
+
+        // Calling methods
+        emp1.PrintDetails();
+        emp1.UpdateSalary(55000);
+        Console.WriteLine("Updated Annual Salary: " +emp1.AnnualSalary());
+    }
+}

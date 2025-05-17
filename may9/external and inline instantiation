@@ -1,0 +1,46 @@
+using System;
+class Student
+{
+    public int RollNumber;
+    public string Name;
+    public int Marks;
+
+    //method to print
+    public void PrintDetails()
+    {
+        Console.WriteLine($"Roll Num: {RollNumber}");
+        Console.WriteLine($"Name: {Name}");
+        Console.WriteLine($"Marks: {Marks}");
+    }
+    class Program
+    {
+        static void Main()
+        {   
+            //external instantiation
+            Student student1 = new Student();
+
+            
+            student1.RollNumber = 101;
+            student1.Name = "Nisha";
+            student1.Marks = 90;
+
+            
+            Student student2 = new Student();
+
+            student2.RollNumber = 102;
+            student2.Name = "John";
+            student2.Marks = 91;
+
+            student1.PrintDetails();
+            student2.PrintDetails();
+
+            //inline instantiation
+            Student student3 = new Student{ RollNumber=103, Name="Bob", Marks=89};
+            Student student4= new Student { RollNumber = 104, Name = "Alice", Marks = 79 };
+
+            student3.PrintDetails();
+            student4.PrintDetails();
+
+        }
+    }
+}

@@ -1,0 +1,41 @@
+using System;
+
+//parent class
+class Animal
+{
+    public string Name;
+    public string Species;
+
+    public void DisplayAnimals()
+    {
+        Console.WriteLine($"name:{Name}");
+        Console.WriteLine($"species:{Species}");
+    }
+ //child class
+class Dog : Animal
+    {
+        public string Breed;
+
+        public void DisplayDog()
+        {
+            Console.WriteLine($"breed:{Breed}");
+        }
+    }
+class Program
+    {
+        static void Main()
+        {
+            Dog mydog = new Dog();
+
+            mydog.Name = "puppy";
+            mydog.Species = "labrador";
+            mydog.Breed = "canine";
+
+            mydog.DisplayAnimals();
+
+            //display dog specific details
+            mydog.DisplayDog();
+
+        }
+    }
+}

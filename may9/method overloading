@@ -1,0 +1,97 @@
+using System;
+
+
+namespace ConsoleApp3
+{
+    internal class Calculator
+    {
+        //addition overloading
+        public int Add(int a, int b)
+        {
+            return a + b;
+        }
+        public double Add(double a, double b)
+        {
+            return a + b;
+        }
+        public int Add(int a, int b, int c)
+        {
+            return a + b + c;
+        }
+        //subtraction overloading
+        public int Sub(int a, int b)
+        {
+            return a - b;
+        }
+        public double Sub(double a, double b)
+        {
+            return a - b;
+        }
+        public int Sub(int a, int b, int c)
+        {
+            return a - b - c;
+        }
+        //multiplication overloading
+        public int Mul(int a, int b)
+        {
+            return a * b;
+        }
+        public double Mul(double a, double b)
+        {
+            return a * b;
+        }
+        public int Mul(int a, int b, int c)
+        {
+            return a * b * c;
+        }
+        //division overloading
+        public int Div(int a, int b)
+        {
+            return a / b;
+        }
+        public double Div(double a, double b)
+        {
+            return a / b;
+        }
+        public int Div(int a, int b, int c)
+        {
+            return a / b / c;
+        }
+    }
+    class Proogram
+    {
+        static void Main()
+        {
+            //add
+            Calculator calc = new Calculator();
+            Console.WriteLine("Addition:");
+            Console.WriteLine("2+3=" + calc.Add(2, 3));
+            Console.WriteLine("2.5+3.5=" + calc.Add(2.5, 3.5));
+            Console.WriteLine("2+3+5=" + calc.Add(2, 3, 5));
+
+            Console.WriteLine("");
+
+            //sub
+            Console.WriteLine("Subtraction:");
+            Console.WriteLine("2-3=" + calc.Sub(2, 3));
+            Console.WriteLine("2.5-3.5=" + calc.Sub(2.5, 3.5));
+            Console.WriteLine("2-3-5=" + calc.Sub(2, 3, 5));
+
+            Console.WriteLine("");
+
+            //mul
+            Console.WriteLine("Multiplication:");
+            Console.WriteLine("2*3=" + calc.Mul(2, 3));
+            Console.WriteLine("2.5*3.5=" + calc.Mul(2.5, 3.5));
+            Console.WriteLine("2*3*5=" + calc.Mul(2, 3, 5));
+
+            Console.WriteLine("");
+
+            //div
+            Console.WriteLine("Division:");
+            Console.WriteLine("2/3=" + calc.Div(2, 3));
+            Console.WriteLine("2.5/3.5=" + calc.Div(2.5, 3.5));
+            Console.WriteLine("2/3/5=" + calc.Div(2, 3, 5));
+        }
+    }
+}

@@ -1,0 +1,33 @@
+
+using System;
+
+//parent class
+class Employee
+{
+    public virtual void Work()
+    {
+        Console.WriteLine("employee is workking");
+    }
+}
+class Manager : Employee
+{
+    public override void Work()
+    {
+        Console.WriteLine("manager is working");
+    }
+}
+class Program
+{
+    static void Main()
+    {
+        Employee emp = new Employee();
+        emp.Work(); //calls base method
+
+        Manager man = new Manager();
+        man.Work(); //calls overriden method
+
+        Employee emp1 = new Manager();
+        emp1.Work(); //calls overriden method
+        
+    }
+}

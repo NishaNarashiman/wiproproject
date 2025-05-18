@@ -1,0 +1,34 @@
+
+using System;
+
+//parent class
+class Shape
+{
+    public virtual void Draw()
+    {
+        Console.WriteLine("drawing a shape");
+    }
+}
+class Circle : Shape
+{
+    public override void Draw()
+    {
+        Console.WriteLine("Drawing a circle");
+    }
+}
+class Program
+{
+    static void Main()
+    {
+        Shape shape = new Shape();
+        shape.Draw(); //calls base method
+
+        Circle circle = new Circle();
+        circle.Draw(); //calls override method
+
+        //shape reference holding circle object
+        Shape shape1 = new Circle();
+        shape1.Draw(); //calls overriden method
+        
+    }
+}

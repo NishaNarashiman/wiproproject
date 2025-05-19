@@ -1,0 +1,66 @@
+using System;
+using System.Collections.Generic;
+
+class Book
+{
+    public string Title;
+    public string Author;
+
+    public Book(string title, string author)
+    {
+        Title = title;
+        Author = author;
+    }
+
+    public void Display()
+    {
+        Console.WriteLine($"Title: {Title}, Author: {Author}");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        // Borrowed Books
+        Queue<Book> borrowedBooks = new Queue<Book>();
+
+        borrowedBooks.Enqueue(new Book("Book A", "Author 1"));
+        borrowedBooks.Enqueue(new Book("Book B", "Author 2"));
+        borrowedBooks.Enqueue(new Book("Book C", "Author 3"));
+        borrowedBooks.Enqueue(new Book("Book D", "Author 4"));
+        borrowedBooks.Enqueue(new Book("Book E", "Author 5"));
+
+        Console.WriteLine("Next book to be returned:");
+        borrowedBooks.Peek().Display(); // show first book in queue
+
+        Console.WriteLine("\nBook returned:");
+        borrowedBooks.Dequeue().Display(); // remove the returned book
+
+        //  New Books 
+        Stack<Book> newBooks = new Stack<Book>();
+
+        newBooks.Push(new Book("New Book X", "New Author A"));
+        newBooks.Push(new Book("New Book Y", "New Author B"));
+        newBooks.Push(new Book("New Book Z", "New Author C"));
+
+        Console.WriteLine("\nLast book purchased:");
+        newBooks.Peek().Display(); // show last book pushed
+
+        Console.WriteLine("\nBook processed:");
+        newBooks.Pop().Display(); // remove top book from stack
+
+        // Remaining Books
+        Console.WriteLine("\nRemaining borrowed books in queue:");
+        foreach (var book in borrowedBooks)
+        {
+            book.Display();
+        }
+
+        Console.WriteLine("\nRemaining new books in stack:");
+        foreach (var book in newBooks)
+        {
+            book.Display();
+        }
+    }
+}

@@ -1,0 +1,37 @@
+using System;
+abstract class PaymentMethod
+{
+    public abstract void ProcessPayment(decimal amount);
+    public void ShowPaymentMethod(string method)
+    {
+        Console.WriteLine($"payment method: {method}");
+    }
+}
+class CreditCardPayment : PaymentMethod
+{
+    public override void ProcessPayment(decimal amount)
+    {
+        Console.WriteLine($"Processing credit card payment of: {amount}");
+    }
+}
+class UPIPayment : PaymentMethod
+{
+    public override void ProcessPayment(decimal amount)
+    {
+        Console.WriteLine($"Processing upi payment of: {amount}");
+    }
+}
+class Program
+{
+    static void Main()
+    {
+        PaymentMethod cc = new CreditCardPayment();
+        PaymentMethod upi = new UPIPayment();
+
+        cc.ShowPaymentMethod("credit card");
+        cc.ProcessPayment(3000);
+
+        upi.ShowPaymentMethod("upi");
+        upi.ProcessPayment(4000);
+    }
+}

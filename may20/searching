@@ -1,0 +1,82 @@
+using System;
+
+namespace ConsoleApp3
+{
+    internal class Searching
+    {
+        public void LinearSearch(int[] data, int target)
+        {
+            int comparisons = 0;
+            bool isFound = false;
+
+            for (int index = 0; index < data.Length; index++)
+            {
+                comparisons++;
+
+                if (data[index] == target)
+                {
+                    isFound = true;
+                    break;
+                }
+            }
+
+            Console.WriteLine(" Linear Search - Comparisons: " + comparisons + (isFound ? " (Found)" : " (Not Found)"));
+        }
+
+        public void BinarySearch(int[] data, int target)
+        {
+            int left = 0;
+            int right = data.Length - 1;
+            int comparisons = 0;
+            bool isFound = false;
+
+            while (left <= right)
+            {
+                int mid = (left + right) / 2;
+                comparisons++;
+
+                if (data[mid] == target)
+                {
+                    isFound = true;
+                    break;
+                }
+                else if (data[mid] < target)
+                {
+                    left = mid + 1;
+                }
+                else
+                {
+                    right = mid - 1;
+                }
+            }
+
+            Console.WriteLine("Binary Search - Comparisons: " + comparisons + (isFound ? " (Found)" : " (Not Found)"));
+        }
+
+        public static void Main()
+        {
+            int[] sizes = { 10, 100, 1000 };
+            int targetValue = 655; 
+
+            Searching search = new Searching();
+
+            foreach (int size in sizes)
+            {
+                int[] numbers = new int[size];
+
+                
+                for (int i = 0; i < size; i++)
+                {
+                    numbers[i] = i + 1;
+                }
+
+                Console.WriteLine($"\n Searching in list of size {size} (Target = {targetValue})");
+
+                search.BinarySearch(numbers, targetValue);
+                search.LinearSearch(numbers, targetValue);
+            }
+
+            
+        }
+    }
+}

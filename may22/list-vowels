@@ -1,0 +1,25 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Program
+{
+    static void Main()
+    {
+        
+        List<string> names = new List<string> 
+        {
+            "Alice", "bob", "Charlie", "David", "Elena",
+            "emily", "Nisha", "john", "Adam", "Lee"
+        };
+
+
+        var vowelNames = names.Where(name => "AEIOUaeiou".Contains(name[0])).ToList();
+        
+        Console.WriteLine("Names starting with a vowel:");
+        foreach (var name in vowelNames)
+        {
+            Console.WriteLine(name);
+        }
+    }
+}

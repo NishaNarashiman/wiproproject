@@ -1,0 +1,34 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Program
+{
+    public static void Main()
+    {
+        Dictionary<string, string> phonebook = new Dictionary<string, string>();
+
+        phonebook.Add("alice", "9142538921");
+        phonebook.Add("bob", "6398521478");
+        phonebook.Add("charlie", "8145236489");
+
+
+        Console.WriteLine(" list of contacts:");
+        foreach(var contacts in phonebook)
+        {
+            Console.WriteLine($"Name: {contacts.Key}, Phone number: {contacts.Value}") ;
+        }
+
+        Console.WriteLine("\nenter a name to search:");
+        string searchname = Console.ReadLine();
+        if(phonebook.ContainsKey(searchname))
+        {
+            Console.WriteLine($"phone number of {searchname} : {phonebook[searchname]}");
+        }
+        else
+        {
+            Console.WriteLine("contact not found");
+        }
+    }
+
+}   

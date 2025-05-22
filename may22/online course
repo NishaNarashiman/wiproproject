@@ -1,0 +1,76 @@
+using System;
+using System.Collections.Generic;
+
+
+class Course
+{
+    public int Id;
+    public string Title;
+    public double Fee;
+
+    public Course(int id, string title, double fee)
+    {
+        Id = id;
+        Title = title;
+        Fee = fee;
+    }
+}
+
+
+interface IEnrollable
+{
+    void Enroll(Course course);
+    void Enroll(Course course, string couponCode);
+}
+
+
+class User : IEnrollable
+{
+    private List<Course> enrolledCourses = new List<Course>();
+    private double totalAmount = 0;
+
+    
+    public void Enroll(Course course)
+    {
+        enrolledCourses.Add(course);
+        totalAmount += course.Fee;
+        Console.WriteLine($"Enrolled in {course.Title} for ${course.Fee}");
+    }
+
+    
+    public void Enroll(Course course, string couponCode)
+    {
+        double discountedFee = course.Fee * 0.8; 
+        enrolledCourses.Add(course);
+        totalAmount += discountedFee;
+        Console.WriteLine($"Enrolled in {course.Title} with coupon '{couponCode}' for ${discountedFee}");
+    }
+
+    
+    public void PrintSummary()
+    {
+        Console.WriteLine("\nEnrolled Courses:");
+        foreach (var course in enrolledCourses)
+        {
+            Console.WriteLine($"- {course.Title}");
+        }
+        Console.WriteLine($"Total Amount Paid: ${totalAmount}");
+    }
+}
+
+
+class Program
+{
+    static void Main()
+    {
+        Course c1 = new Course(1, "C# Basics", 100);
+        Course c2 = new Course(2, "LINQ Fundamentals", 150);
+
+        User user = new User();
+
+        user.Enroll(c1);
+        user.Enroll(c2, "DISCOUNT20");
+
+        user.PrintSummary();
+    }
+}

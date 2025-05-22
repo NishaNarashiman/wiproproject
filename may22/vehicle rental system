@@ -1,0 +1,53 @@
+using System;
+
+
+abstract class Vehicle
+{
+    public string  VehicleNumber { get; set; }
+    public string Brand { get; set; }
+    public double RatePerDay { get; set; }
+
+    public virtual double CalculateRent(int days)
+    {
+        return RatePerDay * days;
+    }
+
+}
+class Car : Vehicle
+{
+    public override double CalculateRent(int days)
+    {
+        return base.CalculateRent(days) + 500;
+    }
+}
+class Bike : Vehicle
+{
+    public override double CalculateRent(int days)
+    {
+        return base.CalculateRent(days);
+    }
+}
+class Truck : Vehicle
+{
+    public override double CalculateRent(int days)
+    {
+        return base.CalculateRent(days) + 2.20;
+    }
+}
+class Program
+{
+    static void Main()
+    {
+        List<Vehicle> vehicles = new List<Vehicle>
+        {
+            new Car {VehicleNumber="CAR123", Brand="Tata", RatePerDay=2500},
+            new Bike {VehicleNumber="BIKE2345", Brand="Honda", RatePerDay=2000},
+            new Truck {VehicleNumber="TRUCK7890", Brand="Mahindra", RatePerDay=3000}
+        };
+        Console.WriteLine("vehicle details:");
+        foreach (var veh in vehicles)
+        {
+            Console.WriteLine($" {veh.Brand}, {veh.VehicleNumber} - rent for 5 days: {veh.CalculateRent(6)}");
+        }
+    }
+}

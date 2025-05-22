@@ -1,0 +1,73 @@
+using System;
+using System.Collections.Generic;
+
+class Product
+{
+    public int Id;
+    public string Name;
+    public double Price;
+
+    public Product(int id, string name, double price)
+    {
+        Id = id;
+        Name = name;
+        Price = price;
+    }
+}
+
+class CartItem
+{
+    public Product Item;
+    public int Qty;
+
+    public CartItem(Product item, int qty)
+    {
+        Item = item;
+        Qty = qty;
+    }
+
+    public double Total()
+    {
+        return Item.Price * Qty;
+    }
+}
+
+class Cart
+{
+    List<CartItem> cartList = new List<CartItem>();
+
+    public void Add(Product p, int qty)
+    {
+        cartList.Add(new CartItem(p, qty));
+    }
+
+    public void ShowCart()
+    {
+        double totalAmount = 0;
+        Console.WriteLine("Your Cart:");
+        foreach (var c in cartList)
+        {
+            double itemTotal = c.Total();
+            Console.WriteLine($"{c.Item.Name} x{c.Qty} = {itemTotal}");
+            totalAmount += itemTotal;
+        }
+        Console.WriteLine("Total: " + totalAmount);
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Product p1 = new Product(1, "Pen", 10);
+        Product p2 = new Product(2, "Notebook", 40);
+        Product p3 = new Product(3, "Bag", 500);
+
+        Cart myCart = new Cart();
+        myCart.Add(p1, 3); 
+        myCart.Add(p2, 2); 
+        myCart.Add(p3, 1); 
+
+        myCart.ShowCart();
+    }
+}

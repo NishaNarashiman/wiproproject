@@ -1,0 +1,69 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Book
+{
+    public int Id;
+    public string Title;
+    public string Author;
+    public bool IsAvailable;
+
+    public Book(int id, string title, string author, bool isAvailable)
+    {
+        Id = id;
+        Title = title;
+        Author = author;
+        IsAvailable = isAvailable;
+    }
+}
+
+class Library
+{
+    private List<Book> books = new List<Book>();
+
+    public void AddBook(Book book)
+    {
+        books.Add(book);
+    }
+
+    public List<Book> SearchByAuthor(string author)
+    {
+        return books.Where(b => b.Author.ToLower().Contains(author.ToLower())).ToList();
+    }
+
+    public List<Book> SearchByTitle(string title)
+    {
+        return books.Where(b => b.Title.ToLower().Contains(title.ToLower())).ToList();
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Library myLibrary = new Library();
+
+       
+        myLibrary.AddBook(new Book(1, "Math Basics", "John Lee", true));
+        myLibrary.AddBook(new Book(2, "English Grammar", "Mary Smith", true));
+        myLibrary.AddBook(new Book(3, "Science Facts", "David Brown", false));
+        myLibrary.AddBook(new Book(4, "History Story", "Anna Clark", true));
+
+        
+        var authorResults = myLibrary.SearchByAuthor("mary");
+        Console.WriteLine("Books by author 'mary':");
+        foreach (var book in authorResults)
+        {
+            Console.WriteLine($"Title: {book.Title}, Available: {book.IsAvailable}");
+        }
+
+        
+        var titleResults = myLibrary.SearchByTitle("science");
+        Console.WriteLine("\nBooks with 'science' in title:");
+        foreach (var book in titleResults)
+        {
+            Console.WriteLine($"Title: {book.Title}, Available: {book.IsAvailable}");
+        }
+    }
+}

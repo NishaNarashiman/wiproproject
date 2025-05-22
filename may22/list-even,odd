@@ -1,0 +1,29 @@
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Text.RegularExpressions;
+
+
+class Program
+{
+    static void Main()
+    {
+        List<int> number = new List<int> { 10, 11, 14, 9, 13, 6, 12, 5, 16, 7 };
+
+
+        var evensep = number.Where(number => number % 2 == 0).ToList();
+        var oddsep = number.Where(number => number % 2 != 0).ToList();
+
+        Console.WriteLine("Even Numbers:");
+        foreach (var num in evensep)
+        {
+            Console.WriteLine(num);
+        }
+        Console.WriteLine("\nOdd Numbers:");
+        foreach (var num in oddsep)
+        {
+            Console.WriteLine(num);
+        }
+    }
+}

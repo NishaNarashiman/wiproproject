@@ -1,0 +1,39 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
+
+class Employee
+{
+
+    public string Name { get; set; }
+    public string Department { get; set; }
+}
+class Program
+{
+    static void Main()
+    {
+        List<Employee> employees = new List<Employee>
+        {
+            new Employee { Name = "alice", Department = "IT" },
+            new Employee { Name = "bob", Department = "Sales" },
+            new Employee { Name = "charlie", Department = "Finance" },
+            new Employee { Name = "david", Department = "Sales" },
+            new Employee { Name = "emily", Department = "IT" },
+            new Employee { Name = "john", Department = "Finance" },
+
+        };
+
+        var EmployeeDepartment = employees.GroupBy(e => e.Department);
+
+        foreach (var group in EmployeeDepartment)
+        {
+            Console.WriteLine($"Department: {group.Key}");
+            foreach (var employee in group)
+            {
+                Console.WriteLine(employee.Name);
+            }
+
+        }
+    }
+}

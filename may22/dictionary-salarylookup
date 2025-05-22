@@ -1,0 +1,30 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Program
+{
+    public static void Main()
+    {
+        Dictionary<int, decimal> employee = new Dictionary<int, decimal>();
+
+        employee.Add(101, 45000);
+        employee.Add(102, 50000);
+        employee.Add(103, 65000);
+        employee.Add(104, 35000);
+        employee.Add(105, 55000);
+
+        Console.WriteLine("\nEnter a ID to search:");
+        int searchID = Convert.ToInt32(Console.ReadLine());
+
+        if (employee.ContainsKey(searchID))
+        {
+            Console.WriteLine($"Salary of {searchID} : {employee[searchID]}");
+        }
+        else
+        {
+            Console.WriteLine("ID not found");
+        }
+    }
+
+}

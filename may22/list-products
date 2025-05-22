@@ -1,0 +1,32 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Product
+{
+
+    public string Name { get; set; }
+    public double Price { get; set; }
+}
+class Program
+{
+    static void Main()
+    {
+        List<Product> products = new List<Product>
+        {
+            new Product { Name = "Mobile", Price = 10000 },
+            new Product { Name = "Laptop", Price = 60000 },
+            new Product { Name = "Keyboard", Price = 300 },
+            new Product { Name = "Table", Price = 900 },
+            new Product { Name = "clock", Price = 300 }
+        };
+
+        var filteredproducts = products.Where(p => p.Price < 500).ToList();
+        Console.WriteLine("filtered list of products>500:");
+        foreach(var product in filteredproducts)
+        {
+            Console.WriteLine($"Name: {product.Name}, Price: {product.Price}");
+        }
+
+    }
+}

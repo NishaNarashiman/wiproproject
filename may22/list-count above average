@@ -1,0 +1,36 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Student
+{
+
+    public string Name { get; set; }
+    public double Mark { get; set; }
+}
+class Program
+{
+    static void Main()
+    {
+        List<Student> students = new List<Student>
+        {
+            new Student { Name = "alice", Mark = 80 },
+            new Student { Name = "bob", Mark = 76 },
+            new Student { Name = "charlie", Mark = 83 },
+            new Student { Name = "david", Mark = 90 },
+            new Student { Name = "emily", Mark = 92 },
+        };
+
+        var average = students.Average(s => s.Mark);
+        Console.WriteLine($"Average mark : { average}");
+
+        var aboveaverage= students.Where(s => s.Mark > average).ToList();
+        Console.WriteLine($"students above average : {aboveaverage.Count}");
+        
+        foreach(var stu in aboveaverage)
+        {
+            Console.WriteLine(stu.Name);
+        }
+
+    }
+}

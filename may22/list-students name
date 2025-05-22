@@ -1,0 +1,32 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Program
+{
+    public static void Main()
+    {
+        List<string> students = new List<string>();
+
+        students.Add("alice");
+        students.Add("bob");
+        students.Add("john");
+        students.Add("emily");
+        students.Add("charlie");
+
+        Console.WriteLine("Original list of students:");
+        foreach(string name in students)
+        {
+            Console.WriteLine(name);
+        }
+
+        var sortedstudents = students.OrderBy(name => name).ToList();
+
+        Console.WriteLine("\nsorted list of students:");
+        foreach (string name in sortedstudents)
+        {
+            Console.WriteLine(name);
+        }
+    }
+
+} 

@@ -1,0 +1,21 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
+
+
+class Program
+{
+    static void Main()
+    {
+
+        string sentence = "C# is great and c# is fun";
+        var words = sentence.Split(' ');
+        var wordfreq = words.GroupBy(words => words).Select(group => new { Word = group.Key, Count = group.Count() });
+        foreach (var word in wordfreq)
+        {
+            Console.WriteLine($" {word.Word} , {word.Count}");
+        }
+
+    }
+}

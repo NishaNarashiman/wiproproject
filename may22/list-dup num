@@ -1,0 +1,21 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Program
+{
+    static void Main()
+    {
+        
+        List<int> numbers = new List<int> { 3, 4, 6, 4, 7, 3, 9, 9, 10, 3 };
+
+
+        var duplicates = numbers.GroupBy(n => n).Where(g => g.Count() > 1).Select(g => g.Key).ToList();
+                
+        Console.WriteLine("Duplicate numbers:");
+        foreach (var num in duplicates)
+        {
+            Console.WriteLine(num);
+        }
+    }
+}

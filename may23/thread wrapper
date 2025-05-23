@@ -1,0 +1,26 @@
+using System;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
+using System.Threading;
+
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        Console.WriteLine("starting all tasks..");
+
+        //start task simultaneously 
+        Task task1 = DoAsyncWork("Task 1", 2000);
+        Task task2 = DoAsyncWork("Task 2", 3000);
+        Task task3 = DoAsyncWork("Task 3", 1000);
+        //await all tasks to complete
+        await Task.WhenAll(task1, task2, task3); 
+        Console.WriteLine("all tasks completed");
+    }
+    static async Task DoAsyncWork(string name, int delay)
+    {
+        Console.WriteLine($" {name} started");
+        await Task.Delay(delay); // simulate async works
+        Console.WriteLine($" {name} completed after {delay}ms.");
+    }
+}

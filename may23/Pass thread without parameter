@@ -1,0 +1,16 @@
+using System;
+using System.Threading;
+
+class Program
+{
+    static void PrintNumbers(object message)
+    {
+        string msg = (string)message; //cast to correct type
+        Console.WriteLine("Message: " + msg);
+    }
+    static void Main()
+    {
+        Thread thread = new Thread(new ParameterizedThreadStart(PrintNumbers));
+        thread.Start("HELLO FROM THREAD!");
+    }
+}

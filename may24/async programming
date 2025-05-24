@@ -1,0 +1,30 @@
+using System;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
+using System.Threading;
+using System.Threading.Tasks;
+
+class Program
+{
+    //async method to simulate a file download
+    static async Task DownloadfileAsync(string fileName, int delayMs)
+    {
+        Console.WriteLine($"Starting download: {fileName}");
+        await Task.Delay( delayMs ); // simulate time taken
+        Console.WriteLine($"Completed download: {fileName} ({delayMs}ms)");
+    }
+    static async Task Main( string[] args )
+    {
+        Console.WriteLine("starting all downloads \n");
+
+        //start all downloads concurrently
+        Task file1 = DownloadfileAsync("file1.pdf", 3000);
+        Task file2 = DownloadfileAsync("file2.jpg", 3000);
+        Task file3 = DownloadfileAsync("file3.zip", 3000);
+
+        //wait for all downloads to complete
+        await Task.WhenAll( file1, file2, file3);
+        Console.WriteLine("\nAll downloads completed");
+
+    }
+}

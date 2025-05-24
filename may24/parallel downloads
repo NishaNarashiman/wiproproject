@@ -1,0 +1,35 @@
+using System;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
+using System.Threading;
+using System.Threading.Tasks;
+
+class Program
+{
+    
+    static async Task DownloadfileAsync(string fileName, int delay)
+    {
+        Console.WriteLine($"download started {fileName}");
+        await Task.Delay(delay);
+        Console.WriteLine($"download finished {fileName} {delay}ms");
+
+    }
+    
+
+    static async Task Main(string[] args)
+    {
+        Console.WriteLine("\nstarting all downloads");
+
+        var stopwatch = Stopwatch.StartNew();
+
+        Task f1 =  DownloadfileAsync("file1.doc",2000);
+        Task f2 =  DownloadfileAsync("file2.img",3000);
+        Task f3 =  DownloadfileAsync("file3.pptx",2000);
+
+        await Task.WhenAll(f1, f2, f3);
+        stopwatch.Stop();
+        Console.WriteLine("\nall tasks done ");
+        Console.WriteLine($"\ntotal time taken {stopwatch.ElapsedMilliseconds} ms");
+
+    }
+}

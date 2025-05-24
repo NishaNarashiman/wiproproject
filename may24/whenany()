@@ -1,0 +1,31 @@
+using System;
+using System.Diagnostics;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task<string> DownloadfileAsync(string fileName, int delay)
+    {
+        Console.WriteLine($"download started {fileName}");
+        await Task.Delay(delay);
+        Console.WriteLine($"download finished {fileName} {delay}ms");
+        return fileName;
+
+    }
+
+
+    static async Task Main(string[] args)
+    {
+        Console.WriteLine("\nstarting all downloads");
+
+        Task<string> f1 = DownloadfileAsync("editing", 2000);
+        Task<string> f2 = DownloadfileAsync("computing", 3000);
+        Task<string> f3 = DownloadfileAsync("printing", 2000);
+
+        Task<string> firstfinished = await Task.WhenAny(f1, f2, f3);
+        
+        Console.WriteLine($"\nfinished first {await firstfinished} ");
+        
+
+    }
+}

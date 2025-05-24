@@ -1,0 +1,55 @@
+using System;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
+using System.Threading;
+using System.Threading.Tasks;
+
+class Program
+{
+    static bool pause;
+    static bool stop;
+    static void PrintNumbers()
+    {
+        for(int i=0; i<=100; i++)
+        {
+            if(stop)
+            {
+                Console.WriteLine("thread stopped");
+                return;
+            }
+            while(pause)
+            {
+                Console.WriteLine("thread paused");
+                Thread.Sleep(500);
+            }
+            Console.WriteLine(i);
+            Thread.Sleep(500);
+        }
+        Console.WriteLine("thread completed");
+    }
+    
+
+    static void Main(string[] args)
+    {
+        Thread mythread = new Thread(PrintNumbers);
+
+        Console.WriteLine("initial thread: "+mythread.ThreadState);
+        mythread.Start();
+
+        Thread.Sleep(2000);
+        pause = true;
+        Console.WriteLine("paused thread: "+mythread.ThreadState);
+
+        Thread.Sleep(3000);
+        pause = false;
+        Console.WriteLine("resuming thread: "+mythread.ThreadState);
+
+        Thread.Sleep(2000);
+        stop = true;
+        Console.WriteLine("stopping thread: " +mythread.ThreadState);
+
+        mythread.Join();
+        Console.WriteLine("final thread state: "+ mythread.ThreadState);
+
+    }
+}

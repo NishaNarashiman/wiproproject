@@ -1,0 +1,46 @@
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task SimulateWorkAsync(string Name, int delay)
+    {
+        Console.WriteLine($" started {Name}");
+        await Task.Delay(delay);
+        Console.WriteLine($" finished {Name} {delay}ms");
+        
+
+    }
+
+
+    static async Task Main(string[] args)
+    {
+        Console.WriteLine("\nsequential execution");
+
+        var st1 = Stopwatch.StartNew();
+
+        await SimulateWorkAsync("task1", 1000);
+        await SimulateWorkAsync("task2", 2000);
+        await SimulateWorkAsync("task3", 3000);
+
+        st1.Stop();
+        Console.WriteLine($"time taken sequential: {st1.ElapsedMilliseconds} ms");
+
+        Console.WriteLine("\nparallel execution");
+
+        var st2 = Stopwatch.StartNew();
+
+        Task T1 = SimulateWorkAsync("task1", 1000);
+        Task T2 = SimulateWorkAsync("task2", 2000);
+        Task T3 = SimulateWorkAsync("task3", 3000);
+
+        await Task.WhenAll(T1, T2, T3);
+
+        st2.Stop();
+        Console.WriteLine($"\n time taken parallel: {st2.ElapsedMilliseconds} ms");
+        
+
+    }
+}

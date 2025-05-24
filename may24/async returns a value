@@ -1,0 +1,26 @@
+using System;
+using System.Threading.Tasks;
+
+class Program
+{
+    static Random rand = new Random();
+
+    static async Task<int> GetTemperatureAsync(string city)
+    {
+        await Task.Delay(1000);
+        return rand.Next(20, 40);
+    }
+
+    static async Task Main()
+    {
+        var temp1 = GetTemperatureAsync("Chennai");
+        var temp2 = GetTemperatureAsync("Trichy");
+        var temp3 = GetTemperatureAsync("Tambaram");
+
+        var results = await Task.WhenAll(temp1, temp2, temp3);
+
+        Console.WriteLine($"Chennai: {results[0]}C");
+        Console.WriteLine($"Trichy: {results[1]}C");
+        Console.WriteLine($"Tambaram: {results[2]}C");
+    }
+}

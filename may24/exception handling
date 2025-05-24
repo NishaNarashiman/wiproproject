@@ -1,0 +1,35 @@
+using System;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task RiskyTaskAsync(string name)
+    {
+        Console.WriteLine($"{name} started");
+
+        await Task.Delay(1000);
+
+        if (name == "Task 2")
+          throw new Exception($"{name} failed due to an error!");
+
+        Console.WriteLine($"{name} completed");
+    }
+
+    static async Task Main()
+    {
+        Task t1 = RiskyTaskAsync("Task 1");
+        Task t2 = RiskyTaskAsync("Task 2"); 
+        Task t3 = RiskyTaskAsync("Task 3");
+
+        try
+        {
+            await Task.WhenAll(t1, t2, t3);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"\nException caught: {ex.Message}");
+        }
+
+        Console.WriteLine("\nAll tasks done");
+    }
+}

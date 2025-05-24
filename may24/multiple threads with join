@@ -1,0 +1,39 @@
+using System;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
+using System.Threading;
+using System.Threading.Tasks;
+
+class Program
+{
+    
+    static void Works(string name)
+    {
+        for(int i=0; i<=3; i++)
+        {
+            
+            Console.WriteLine($"thread {name} - step {i}");
+            Thread.Sleep(500);
+        }
+        Console.WriteLine($"thread {name} completed");
+    }
+    
+
+    static void Main(string[] args)
+    {
+        Thread A1 = new Thread(() => Works("printing"));
+        Thread A2 = new Thread(() => Works("computing"));
+        Thread A3 = new Thread(() => Works("waiting"));
+
+        A1.Start();
+        A2.Start();
+        A3.Start();
+
+        A1.Join(); 
+        A2.Join(); 
+        A3.Join();
+
+        Console.WriteLine("all tasks done ");
+
+    }
+}

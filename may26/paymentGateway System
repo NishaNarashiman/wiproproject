@@ -1,0 +1,91 @@
+using System;
+using System.Collections.Generic;
+
+
+interface IPaymentProcessor
+{
+    void ProcessPayment(decimal amount);
+}
+
+
+abstract class PaymentGateway
+{
+
+    public abstract void GatewayName();
+
+
+    public void Validate()
+    {
+        Console.WriteLine("payment validation successful");
+    }
+}
+
+
+class Razorpay : PaymentGateway, IPaymentProcessor
+{
+    public override void GatewayName()
+    {
+        Console.WriteLine("Gateway: Razorpay");
+    }
+
+    public void ProcessPayment(decimal amount)
+    {
+        Console.WriteLine($"processing payment {amount} through Razorpay");
+    }
+}
+
+
+class PayPal : PaymentGateway, IPaymentProcessor
+{
+    public override void GatewayName()
+    {
+        Console.WriteLine("Gateway: PayPal");
+    }
+
+    public void ProcessPayment(decimal amount)
+    {
+        Console.WriteLine($"processing payment {amount} through PayPal");
+    }
+}
+
+
+class Stripe : PaymentGateway, IPaymentProcessor
+{
+    public override void GatewayName()
+    {
+        Console.WriteLine("Gateway: Stripe");
+    }
+
+    public void ProcessPayment(decimal amount)
+    {
+        Console.WriteLine($"processing payment {amount} through Stripe");
+    }
+}
+
+
+class Program
+{
+    static void Main()
+    {
+
+        List<IPaymentProcessor> gatewayList = new List<IPaymentProcessor>
+        {
+            new Razorpay(),
+            new PayPal(),
+            new Stripe()
+        };
+
+
+        foreach (IPaymentProcessor processor in gatewayList)
+        {
+
+            PaymentGateway gatewayObj = (PaymentGateway)processor;
+
+            gatewayObj.GatewayName();
+            gatewayObj.Validate();
+            processor.ProcessPayment(2000);
+
+            Console.WriteLine();
+        }
+    }
+}

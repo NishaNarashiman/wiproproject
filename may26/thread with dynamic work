@@ -1,0 +1,62 @@
+using System;
+using System.Collections.Generic;
+using System.Threading;
+
+class Program
+{
+    static Queue<string> tasks = new Queue<string>();
+    static object locker = new object();
+    static bool noMoreTasks = false;
+
+    static void Main()
+    {
+        Thread worker = new Thread(Worker);
+        worker.Start();
+
+        
+        for (int i = 1; i <= 5; i++)
+        {
+            lock (locker)
+            {
+                tasks.Enqueue("Task " + i);
+                Console.WriteLine("Added Task " + i);
+            }
+            Thread.Sleep(300);
+        }
+
+        noMoreTasks = true;  
+
+        worker.Join(); 
+        Console.WriteLine("All tasks done.");
+    }
+
+    static void Worker()
+    {
+        while (true)
+        {
+            string task = null;
+
+            lock (locker)
+            {
+                if (tasks.Count > 0)
+                {
+                    task = tasks.Dequeue();
+                }
+                else if (noMoreTasks)
+                {
+                    break; 
+                }
+            }
+
+            if (task != null)
+            {
+                Console.WriteLine("Processing " + task);
+                Thread.Sleep(500);  
+            }
+            else
+            {
+                Thread.Sleep(100);  
+            }
+        }
+    }
+}

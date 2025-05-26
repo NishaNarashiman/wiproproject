@@ -1,0 +1,39 @@
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main()
+    {
+        CancellationTokenSource cts = new CancellationTokenSource();
+
+        
+        var task1 = ServerAsync("Server1", cts.Token);
+        var task2 = ServerAsync("Server2", cts.Token);
+        var task3 = ServerAsync("Server3", cts.Token);
+
+        
+        var fastest = await Task.WhenAny(task1, task2, task3);
+        Console.WriteLine($"Fastest: {fastest.Result}");
+
+        
+        cts.Cancel();
+    }
+
+    static async Task<string> ServerAsync(string name, CancellationToken token)
+    {
+        Random rnd = new Random();
+        int delay = rnd.Next(1000, 4000); 
+
+        try
+        {
+            await Task.Delay(delay, token);
+            return $"{name} finished in {delay} ms.";
+        }
+        catch (OperationCanceledException)
+        {
+            return $"{name} was cancelled.";
+        }
+    }
+}

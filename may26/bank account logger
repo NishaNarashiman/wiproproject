@@ -1,0 +1,99 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+
+class Transaction
+{
+    public string Type;   
+    public decimal Amount;
+
+    public override string ToString()
+    {
+        return Type + "," + Amount;
+    }
+
+    public static Transaction FromString(string line)
+    {
+        var parts = line.Split(',');
+        return new Transaction
+        {
+            Type = parts[0],
+            Amount = decimal.Parse(parts[1])
+        };
+    }
+}
+
+class BankAccount
+{
+    decimal balance = 0;
+    List<Transaction> transactions = new List<Transaction>();
+    string file = "transactions.txt";
+
+    public BankAccount()
+    {
+        Load();
+        PrintSummary();
+    }
+
+    public void Deposit(decimal amount)
+    {
+        balance += amount;
+        transactions.Add(new Transaction { Type = "Deposit", Amount = amount });
+        Save();
+    }
+
+    public void Withdraw(decimal amount)
+    {
+        if (amount > balance)
+        {
+            Console.WriteLine("Not enough money!");
+            return;
+        }
+        balance -= amount;
+        transactions.Add(new Transaction { Type = "Withdraw", Amount = amount });
+        Save();
+    }
+
+    void Save()
+    {
+        using var writer = new StreamWriter(file);
+        foreach (var t in transactions)
+            writer.WriteLine(t.ToString());
+    }
+
+    void Load()
+    {
+        if (!File.Exists(file)) return;
+
+        var lines = File.ReadAllLines(file);
+        foreach (var line in lines)
+        {
+            var t = Transaction.FromString(line);
+            transactions.Add(t);
+            if (t.Type == "Deposit") balance += t.Amount;
+            else if (t.Type == "Withdraw") balance -= t.Amount;
+        }
+    }
+
+    public void PrintSummary()
+    {
+        Console.WriteLine("Balance: $" + balance);
+        Console.WriteLine("Transactions:");
+        foreach (var t in transactions)
+            Console.WriteLine(t.Type + ": $" + t.Amount);
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        BankAccount account = new BankAccount();
+
+        account.Deposit(1000);
+        account.Withdraw(300);
+        account.Deposit(200);
+
+        account.PrintSummary();
+    }
+}

@@ -1,0 +1,43 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.ExceptionServices;
+
+class Item
+{
+    public string Name { get; set; }
+    public string Type { get; set; }
+    public int Stock { get; set; }
+    public decimal Price { get; set; }
+}
+class Program
+{
+    static void Main()
+    {
+        List<Item> list = new List<Item>()
+        {
+            new Item{Name="Redmi",Type="Mobile",Stock=2,Price=15000},
+            new Item{Name="Lenovo",Type="Mobile",Stock=3,Price=13000},
+            new Item{Name="Vivo",Type="Mobile",Stock=7,Price=10000},
+            new Item{Name="Oppo",Type="Mobile",Stock=1,Price=20000},
+            new Item{Name="Oneplus",Type="Mobile",Stock=4,Price=25000},
+            new Item{Name="LG",Type="Fridge",Stock=5,Price=65000},
+            new Item{Name="Whirlpool",Type="Fridge",Stock=3,Price=45000},
+            new Item{Name="Panasonic",Type="Fridge",Stock=5,Price=50000},
+            new Item{Name="Bosch",Type="Fridge",Stock=2,Price=55000},
+            new Item{Name="Haier",Type="Fridge",Stock=15,Price=75000},
+            new Item{Name="Daikin",Type="AC",Stock=13,Price=40000},
+            new Item{Name="Voltas ",Type="AC",Stock=10,Price=55000},
+            new Item{Name="BlueStar ",Type="AC",Stock=12,Price=35000},
+            new Item{Name="Samsung",Type="AC",Stock=6,Price=30000},
+            new Item{Name="Hitachi",Type="AC",Stock=11,Price=37000}
+
+        };
+
+        var sorteditems = list.Where(s => s.Stock < 10).GroupBy(t => t.Type).Select(g => g.OrderByDescending(i => i.Price).First()).ToList();
+        foreach (var i in sorteditems)
+        {
+            Console.WriteLine($" {i.Name} , {i.Type}, {i.Stock}, {i.Price}");
+        }
+    }
+}

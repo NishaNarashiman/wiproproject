@@ -1,0 +1,34 @@
+using System;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main()
+    {
+        List<string> imageFiles = new List<string>();
+        for (int i = 1; i <= 20; i++)
+        {
+            imageFiles.Add($"Image_{i}.jpg");
+        }
+
+        int processedCount = 0;
+        int total = imageFiles.Count;
+        object lockObj = new object();
+
+        await Parallel.ForEachAsync(imageFiles, async (image, token) =>
+        {
+            await Task.Delay(200); 
+
+            lock (lockObj)
+            {
+                processedCount++;
+                int percent = processedCount * 100 / total;
+                Console.WriteLine($"Processed: {image} ({percent}% done)");
+            }
+        });
+
+        Console.WriteLine("\nAll images processed.");
+    }
+}

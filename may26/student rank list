@@ -1,0 +1,39 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Student
+{
+    public string Name { get; set; }
+    public int Marks { get; set; }
+    public string Grade { get; set; }
+}
+class Program
+{
+    static void Main()
+    {
+        List<Student> students = new List<Student>()
+        {
+            new Student{Name="alice",Marks=89,Grade="B" },
+            new Student{Name="bob",Marks=91,Grade="B" },
+            new Student{Name="charlie",Marks=97,Grade="A" },
+            new Student{Name="david",Marks=77,Grade="C" },
+            new Student{Name="emily",Marks=61,Grade="D" },
+            new Student{Name="frank",Marks=84,Grade="B"},
+            new Student{Name="john",Marks=94,Grade="A"},
+            new Student{Name="Noah",Marks=75,Grade="C" },
+            new Student{Name="Elsa",Marks=85,Grade="B"},
+            new Student{Name="Anna",Marks=65,Grade="D"}
+        };
+        var top3 = students.OrderByDescending(m=>m.Marks).Take(3).GroupBy(g=>g.Grade).ToList();
+
+        foreach (var group in top3)
+        {
+            Console.WriteLine($"Grade: {group.Key}");
+            foreach (var student in group)
+            {
+                Console.WriteLine($"  {student.Name} - {student.Marks}");
+            }
+        }
+    }
+}

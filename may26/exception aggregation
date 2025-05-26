@@ -1,0 +1,32 @@
+using System;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main()
+    {
+        
+        Task t1 = Task.Run(() => Console.WriteLine("Task 1 completed"));
+        Task t2 = Task.Run(() => throw new InvalidOperationException("Task 2 failed"));
+        Task t3 = Task.Run(() => Console.WriteLine("Task 3 completed"));
+        Task t4 = Task.Run(() => throw new ArgumentException("Task 4 failed"));
+        Task t5 = Task.Run(() => Console.WriteLine("Task 5 completed"));
+
+        try
+        {
+            
+            await Task.WhenAll(t1, t2, t3, t4, t5);
+        }
+        catch (AggregateException ex)
+        {
+            Console.WriteLine("\nExceptions occurred:");
+            foreach (var e in ex.InnerExceptions)
+            {
+                Console.WriteLine($"- {e.GetType().Name}: {e.Message}");
+            }
+        }
+
+       
+        Console.WriteLine("\nAll tasks attempted.");
+    }
+}

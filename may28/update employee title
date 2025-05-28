@@ -1,0 +1,43 @@
+using System;
+using System.Data.SqlClient;
+
+class Program
+{
+    static void Main()
+    {
+        
+        UpdateEmployee(1, "Finance Representative");
+
+        Console.ReadLine();
+    }
+
+    static void UpdateEmployee(int Id, string newTitle)
+    {
+        string connectionString =
+            "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Northwind;Integrated Security=true";
+
+        string query = "UPDATE Employees SET Title = @Title WHERE EmployeeID = @EmployeeID";
+
+        using (SqlConnection connection = new SqlConnection(connectionString))
+        using (SqlCommand command = new SqlCommand(query, connection))
+        {
+            
+            command.Parameters.AddWithValue("@Title", newTitle);
+            command.Parameters.AddWithValue("@EmployeeID",Id);
+
+            try
+            {
+                connection.Open();
+                int rowsAffected = command.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                    Console.WriteLine($"Employee ID {Id} title updated to '{newTitle}'.");
+                else
+                    Console.WriteLine($"No employee found with ID {Id}.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+        }
+    }
+}

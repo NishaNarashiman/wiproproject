@@ -1,0 +1,50 @@
+using System;
+using System.Data.SqlClient;
+
+class Program
+{
+    static void Main()
+    {
+        Console.Write("Enter Customer ID: ");
+        string customerId = Console.ReadLine();
+
+        GetOrdersByCustomer(customerId);
+        Console.ReadLine();
+    }
+
+    static void GetOrdersByCustomer(string customerId)
+    {
+        string connectionString =
+            "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Northwind;" +
+            "Integrated Security=true";
+
+        string query = "SELECT OrderID, OrderDate, ShipCountry FROM Orders WHERE CustomerID = @customerId";
+
+        using (SqlConnection connection = new SqlConnection(connectionString))
+        using (SqlCommand command = new SqlCommand(query, connection))
+        {
+            
+            command.Parameters.AddWithValue("@customerId", customerId);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                Console.WriteLine("OrderID\tOrderDate\tShipCountry");
+
+                while (reader.Read())
+                {
+                    Console.WriteLine("{0}\t{1:yyyy-MM-dd}\t{2}",
+                        reader["OrderID"], reader["OrderDate"], reader["ShipCountry"]);
+                }
+
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+        }
+    }
+}

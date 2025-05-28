@@ -1,0 +1,43 @@
+using System;
+using System.Data.SqlClient;
+
+class Program
+{
+    static void Main()
+    {
+        
+        DeleteProduct();
+
+        Console.ReadLine();
+    }
+
+    static void DeleteProduct()
+    {
+        string connectionString =
+            "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Northwind;Integrated Security=true";
+
+        string query = @"DELETE  FROM Products
+                       WHERE ProductID NOT IN(SELECT DISTINCT ProductID FROM[Order Details])";
+
+        using (SqlConnection connection = new SqlConnection(connectionString))
+        using (SqlCommand command = new SqlCommand(query, connection))
+        {
+            
+           
+
+            try
+            {
+                connection.Open();
+                int rowsAffected = command.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                    Console.WriteLine($" {rowsAffected} Product deleted.");
+                else
+                    Console.WriteLine($" {rowsAffected} No Product deleted");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+        }
+    }
+}

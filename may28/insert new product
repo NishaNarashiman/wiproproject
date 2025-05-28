@@ -1,0 +1,42 @@
+using System;
+using System.Data.SqlClient;
+
+class Program
+{
+    static void Main()
+    {
+        InsertProduct();
+        Console.ReadLine();
+    }
+
+    static void InsertProduct()
+    {
+        string connectionString =
+            "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Northwind;" +
+            "Integrated Security=true";
+
+        string query = @"INSERT INTO Products (ProductName, SupplierID, CategoryID, UnitPrice)
+                         VALUES (@ProductName, @SupplierID, @CategoryID, @UnitPrice)";
+
+        using (SqlConnection connection = new SqlConnection(connectionString))
+        using (SqlCommand command = new SqlCommand(query, connection))
+        {
+            
+            command.Parameters.AddWithValue("@ProductName", "Test Product");
+            command.Parameters.AddWithValue("@SupplierID", 1);
+            command.Parameters.AddWithValue("@CategoryID", 1);
+            command.Parameters.AddWithValue("@UnitPrice", 25);
+
+            try
+            {
+                connection.Open();
+                int newrow = command.ExecuteNonQuery(); 
+                Console.WriteLine("Inserted successfully. Rows affected: " + newrow);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+        }
+    }
+}

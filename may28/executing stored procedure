@@ -1,0 +1,47 @@
+using System;
+using System.Data;
+using System.Data.SqlClient;
+
+class Program
+{
+    static void Main()
+    {
+        string connectionString =
+            "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Northwind;Integrated Security=true";
+
+        Console.Write("Enter CustomerID: ");
+        string customerId = Console.ReadLine();  
+
+        using (SqlConnection connection = new SqlConnection(connectionString))
+        {
+            using (SqlCommand cmd = new SqlCommand("CustOrderHist", connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                
+                cmd.Parameters.AddWithValue("@CustomerID", customerId);
+
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    Console.WriteLine("\nProductName\tTotal");
+
+                    while (reader.Read())
+                    {
+                        Console.WriteLine($"{reader["ProductName"]}\t{reader["Total"]}");
+                    }
+
+                    reader.Close();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
+                }
+
+                Console.ReadLine();
+            }
+        }
+    }
+}

@@ -1,0 +1,47 @@
+using System;
+using System.Data;
+using System.Data.SqlClient;
+
+class Program
+{
+    static void Main()
+    {
+        
+        string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Northwind;Integrated Security=true";
+
+
+        string query = "SELECT * FROM Products";
+
+        
+        using (SqlConnection conn = new SqlConnection(connectionString))
+        {
+            SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
+            DataSet ds = new DataSet();
+
+            try
+            {
+                
+                adapter.Fill(ds, "Products");
+
+                
+                DataTable productsTable = ds.Tables["Products"];
+
+                
+                DataRow[] filteredRows = productsTable.Select("UnitsInStock > 20");
+
+                
+                Console.WriteLine("Products with UnitsInStock > 20:");
+                foreach (DataRow row in filteredRows)
+                {
+                    Console.WriteLine($"ProductID: {row["ProductID"]}, ProductName: {row["ProductName"]}, UnitsInStock: {row["UnitsInStock"]}");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+        }
+
+        Console.ReadLine();
+    }
+}

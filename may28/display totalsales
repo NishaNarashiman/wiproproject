@@ -1,0 +1,47 @@
+using System;
+using System.Data;
+using System.Data.SqlClient;
+
+class Program
+{
+    static void Main()
+    {
+        string connectionString =
+            "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Northwind;Integrated Security=true";
+
+        string queryString = @"
+            SELECT p.CategoryID, SUM(o.UnitPrice * o.Quantity) AS TotalSales
+            FROM [Order Details] o
+            JOIN Products p ON o.ProductID = p.ProductID
+            GROUP BY p.CategoryID";
+
+        using (SqlConnection connection = new SqlConnection(connectionString))
+
+        {
+            using (SqlDataAdapter adapter = new SqlDataAdapter(queryString, connection))
+            {
+                try
+                {
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+
+
+                    Console.WriteLine("CategoryID\tTotalSales");
+
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        Console.WriteLine($"CategoryID: {row["CategoryID"]}, Toatlsales: {row["TotalSales"]}");
+                    }
+
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
+                }
+
+                Console.ReadLine();
+            }
+        }
+    }
+}

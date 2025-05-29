@@ -1,0 +1,32 @@
+﻿@model WebApplication9.Models.Contact
+
+<h2>Contact Us</h2>
+
+@if (ViewBag.Message != null)
+{
+    <p style="color: green;">@ViewBag.Message</p>
+}
+
+<form method="post">
+    <div>
+        <label>Name:</label><br />
+        <input type="text" name="Name" required />
+    </div>
+    <br />
+    <div>
+        <label>Email:</label><br />
+        <input type="email" name="Email" required />
+    </div>
+    <br />
+    <div>
+        <label>Subject:</label><br />
+        <input type="text" name="Subject" required />
+    </div>
+    <br />
+    <div>
+        <label>Message:</label><br />
+        <textarea name="Message" rows="4" cols="40" required></textarea>
+    </div>
+    <br />
+    <button type="submit">Send</button>
+</form>

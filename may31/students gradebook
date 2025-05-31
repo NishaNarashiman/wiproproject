@@ -1,0 +1,47 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Program
+{
+    static void Main()
+    {
+        
+        Dictionary<string, List<int>> studentMarks = new Dictionary<string, List<int>>()
+        {
+            { "Alice", new List<int> { 85, 92, 78 } },
+            { "Bob", new List<int> { 80, 76, 90 } },
+            { "Charlie", new List<int> { 95, 91, 89 } },
+            { "David", new List<int> { 72, 50, 65 } },
+            { "Emily", new List<int> { 88, 85, 92 } }
+        };
+
+        Console.WriteLine("Student Reportcard:\n");
+
+        
+        foreach (var student in studentMarks)
+        {
+            string name = student.Key;
+            List<int> marks = student.Value;
+
+            double average = marks.Average();
+            int highest = marks.Max();
+            int lowest = marks.Min();
+
+            Console.WriteLine($"{name} => Avg: {average:F2}, High: {highest}, Low: {lowest}");
+        }
+
+        
+        Console.WriteLine("\nTop 3 Scorers:");
+
+        var topScorers = studentMarks
+            .Select(s => new { Name = s.Key, Average = s.Value.Average() })
+            .OrderByDescending(s => s.Average)
+            .Take(3);
+
+        foreach (var student in topScorers)
+        {
+            Console.WriteLine($"{student.Name}: {student.Average:F2}");
+        }
+    }
+}

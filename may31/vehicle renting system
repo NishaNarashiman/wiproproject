@@ -1,0 +1,72 @@
+using System;
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
+
+interface IRentable
+{
+    void Rent(int days);
+}
+abstract class Vehicle
+{
+    public abstract double RatePerDay { get; set; }
+    public virtual double CalculateRent(int days)
+    {
+        return RatePerDay * days;
+    }
+    public void DisplayRate()
+    {
+        Console.WriteLine($"Rate Per Day : {RatePerDay}");
+    }
+}
+class Car : Vehicle, IRentable
+{
+    public override double RatePerDay { get; set; } = 500;
+
+    public void Rent(int days)
+    {
+        Console.WriteLine($"Car rented for {days} days. ToatlCost: {CalculateRent(days)}");
+    }
+}
+class Bike : Vehicle, IRentable
+{
+    public override double RatePerDay { get; set; } = 1500;
+
+    public void Rent(int days)
+    {
+        Console.WriteLine($"Bike rented for {days} days. ToatlCost: {CalculateRent(days)}");
+    }
+}
+class Truck : Vehicle, IRentable
+{
+    public override double RatePerDay { get; set; } = 2000;
+
+    public void Rent(int days)
+    {
+        Console.WriteLine($"Truck rented for {days} days. ToatlCost: {CalculateRent(days)}");
+    }
+}
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("\nVehicle rental system");
+
+        Console.WriteLine("\nCar");
+        Car car = new Car();
+        car.Rent(8);
+        car.DisplayRate();
+
+
+        Console.WriteLine("\nBike");
+        Bike bike = new Bike();
+        bike.Rent(7);
+        bike.DisplayRate();
+
+        Console.WriteLine("\nTruck");
+        Truck truck = new Truck();
+        truck.Rent(6);
+        truck.DisplayRate();
+
+
+    }
+}

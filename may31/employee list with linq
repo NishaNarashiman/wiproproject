@@ -1,0 +1,57 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Employee
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public string Department { get; set; }
+    public decimal Salary { get; set; }
+}
+
+class Program
+{
+    static void Main()
+    {
+        List<Employee> employee = new List<Employee>()
+        {
+            new Employee{Id=1,Name="alice",Department="sales",Salary =45000},
+            new Employee{Id=2,Name="bob",Department="finance",Salary =55000},
+            new Employee{Id=3,Name="charlie",Department="IT",Salary =50000},
+            new Employee{Id=4,Name="david",Department="finance",Salary =55000},
+            new Employee{Id=5,Name="emily",Department="sales",Salary =30000}
+        };
+
+        
+        Console.WriteLine("\nFiltered by department:");
+        var filterByDept = employee.GroupBy(e => e.Department);
+        foreach (var group in filterByDept)
+        {
+            Console.WriteLine($"\nDepartment: {group.Key}");
+            foreach (var emp in group)
+            {
+                Console.WriteLine($" Name: {emp.Name}, Salary: ₹{emp.Salary}");
+            }
+        }
+
+        
+        Console.WriteLine("\nSorted by salary:");
+        var sortedBySalary = employee.OrderByDescending(e => e.Salary);
+        foreach (var emp in sortedBySalary)
+        {
+            Console.WriteLine($"Name: {emp.Name} , Department: ({emp.Department}) , Salary: {emp.Salary}");
+        }
+
+        
+        Console.WriteLine("\nAverage salary per dept:");
+        var avgSalaryByDept = employee
+            .GroupBy(e => e.Department)
+            .Select(g => new { Department = g.Key, AverageSalary = g.Average(e => e.Salary) });
+
+        foreach (var avg in avgSalaryByDept)
+        {
+            Console.WriteLine($"Department: {avg.Department} , Average Salary: {avg.AverageSalary}");
+        }
+    }
+}
